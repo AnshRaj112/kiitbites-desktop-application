@@ -1,43 +1,44 @@
 # KIITBites - Desktop Application
 
 ## Introduction
-The **KIITBites Desktop Application** is the frontend solution for the KIITBites platform, designed specifically for desktop users. It enables students and food vendors to seamlessly order food, track their orders in real-time, and receive notifications about their purchases. Built using **React Native for Windows/macOS**, the desktop app ensures a smooth and efficient user experience across operating systems.
+The **KIITBites Desktop Application** is a dedicated solution for desktop users, allowing students and vendors to efficiently manage food orders, track inventory, and receive real-time updates. Built using **.NET and C#**, the desktop app ensures a high-performance experience across Windows and macOS environments.
 
 ## Tech Stack
-- **Framework:** React Native for Windows/macOS
-- **State Management:** Redux Toolkit
-- **UI Components:** React Native Paper
-- **Navigation:** React Navigation
-- **Network Requests:** Axios
-- **Real-Time Updates:** Socket.io
-- **Authentication:** Firebase Auth, JWT
-- **Push Notifications:** Expo Notifications
+- **Framework:** .NET (WPF for Windows, MAUI for cross-platform)
+- **Programming Language:** C#
+- **Database:** MongoDB with Mongoose
+- **State Management:** MVVM (Model-View-ViewModel) Pattern
+- **Networking:** HttpClient for API Requests
+- **Real-Time Updates:** SignalR
+- **Authentication:** JWT, OAuth (Google Sign-In)
+- **UI Components:** XAML (Windows) / Blazor Hybrid (macOS)
 
 ## Features
 - **User Authentication** (Google OAuth, Email/Password login)
 - **Food Ordering System** with real-time tracking
+- **Multi-Food Court Integration** (View all food courts, check menus, and availability)
 - **Cart Management** (Add, remove, modify items before checkout)
 - **Payment Integration** (UPI, Card, Wallets)
-- **Push Notifications** (Order status, special offers)
 - **Order Tracking** (Live updates from preparation to pickup)
-- **User Profile & Preferences** (Saved addresses, order history)
+- **Vendor Dashboard** (Manage orders, track sales, update menus)
+- **Offline Mode** (Orders can be placed and synced later)
 
 ## Environment Variables
-Create a `.env` file in the root directory and configure the following variables:
+Create an `appsettings.json` file in the root directory and configure the following variables:
 ```
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-NEXT_PUBLIC_BACKEND_URL=your_backend_url
-BACKEND_URL=your_backend_url
-FIREBASE_API_KEY=your_firebase_api_key
-FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+{
+  "GoogleClientId": "your_google_client_id",
+  "GoogleClientSecret": "your_google_client_secret",
+  "BackendUrl": "your_backend_url",
+  "DatabaseConnection": "your_mongodb_connection_string",
+  "JwtSecret": "your_jwt_secret"
+}
 ```
 
 ## Installation & Setup
 ### Prerequisites
-- Node.js and npm installed
-- React Native for Windows/macOS setup (`npx react-native-windows-init` for Windows or `npx react-native-macos-init` for macOS)
+- .NET SDK installed
+- MongoDB setup
 
 ### Installation Steps
 1. **Fork the repository** on GitHub.
@@ -48,25 +49,31 @@ FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
    ```
 3. **Install dependencies**:
    ```bash
-   npm install
+   dotnet restore
    ```
 4. **Create a new branch** following the naming convention:
    - For new features: `features/feature-name`
-   - For bug fixes: `fixes/fix-name/feature-name`
+   - For bug fixes: `fixes/fix-name`
    ```bash
    git checkout -b features/your-feature-name
    ```
 
 ### Running the Desktop Application
+#### Windows (WPF):
 ```bash
-npx react-native run-windows   # For Windows
-npx react-native run-macos     # For macOS
+cd KIITBites.WPF
+dotnet run
 ```
-The application will launch in a dedicated desktop window.
+#### Cross-Platform (MAUI for macOS & Windows):
+```bash
+cd KIITBites.MAUI
+dotnet build
+``` 
+Run the generated executable for your platform.
 
 ## Contributing
 1. Fork the repository.
-2. Create a new branch (`git checkout -b features/feature-name` or `fixes/fix-name/feature-name`).
+2. Create a new branch (`git checkout -b features/feature-name` or `fixes/fix-name`).
 3. Commit your changes (`git commit -m 'Added new feature'`).
 4. Push to your branch (`git push origin features/feature-name`).
 5. Open a pull request.
