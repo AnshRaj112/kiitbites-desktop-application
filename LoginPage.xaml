@@ -1,0 +1,11 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="kiitbites_desktop_application.LoginPage">
+    
+    <VerticalStackLayout Padding="20">
+        <Entry Placeholder="Enter Email or Phone Number" x:Name="EmailPhoneEntry"/>
+        <Entry Placeholder="Enter Password" x:Name="PasswordEntry" IsPassword="True"/>
+        <Button Text="Login" Clicked="OnLoginClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
+    
