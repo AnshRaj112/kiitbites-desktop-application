@@ -27,15 +27,26 @@ namespace kiitbites_desktop_application
             string jsonBody = JsonConvert.SerializeObject(credentials);
             var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync($"{backendUrl}/api/login", content);
+            try
+            {
+                var response = await _httpClient.PostAsync($"{backendUrl}/api/login", content);
 
-            if (response.IsSuccessStatusCode)
-            {
-                await DisplayAlert("Success", "Login successful!", "OK");
+                if (response.IsSuccessStatusCode)
+                {
+                    await DisplayAlert("Success", "Login successful!", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Invalid credentials!", "OK");
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
-                await DisplayAlert("Error", "Invalid credentials!", "OK");
+                await DisplayAlert("Network Error", $"An error occurred while trying to log in: {ex.Message}", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
             }
         }
     }
