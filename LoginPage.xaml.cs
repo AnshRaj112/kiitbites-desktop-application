@@ -17,7 +17,7 @@ namespace kiitbites_desktop_application
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
-            string backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://localhost:5003";
+            string backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://localhost:5001";
             var credentials = new
             {
                 identifier = EmailPhoneEntry.Text,
@@ -29,7 +29,7 @@ namespace kiitbites_desktop_application
 
             try
             {
-                var response = await _httpClient.PostAsync($"{backendUrl}/api/login", content);
+                var response = await _httpClient.PostAsync($"{backendUrl}/api/auth/login", content);
 
                 if (response.IsSuccessStatusCode)
                 {
